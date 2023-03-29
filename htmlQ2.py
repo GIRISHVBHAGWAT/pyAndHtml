@@ -2,7 +2,7 @@
 print("HARI OM")
 
 
-data= "vs1.txt"
+data= "adhikari.txt"
 save="omgayatri.html"
 
 
@@ -25,7 +25,8 @@ headingvalue=0
 
 for heading in qas:
   if '#' in heading:
-    allHeadings.append(heading[1:])
+    replacedHeading=heading.replace("#","")
+    allHeadings.append(replacedHeading)
     
 write_file.write(" <p class=\"hari\">  <select id=\"sample\" onchange=\"getvalue()\"> ")
 
@@ -44,7 +45,7 @@ cou=0
 fn=0
 quiz_code=[]
 headingCounter=0
-
+qusserialNumber=0
 
   
    
@@ -56,9 +57,11 @@ for q in qas:
     questions.append(q.split("---")[0])
     answers.append(q.split("---")[1])
     
+    
   
     
-    ans= "<h2 class='right' onclick=\"this.style.backgroundColor='green' \">"+answers[questions.index(q)]+"</h2>"
+    ans= "<h2 class='right' onclick=\"this.style.backgroundColor='green' \">"+answers[qusserialNumber]+"</h2>"
+    
     cou+=1
     qusNumber+=1
      
@@ -74,17 +77,18 @@ for q in qas:
     four_str_answer = [opt1,opt2,opt3,ans]   
     answeres_list = [one_str_answer, two_str_answer, three_str_answer, four_str_answer] 
     random_option = random.choice(answeres_list)
-    write_file.write("<h1>"+str(qusNumber)+". "+questions[questions.index(q)]+"</h1>")
+    write_file.write("<h1>"+str(qusNumber)+". "+questions[qusserialNumber]+"</h1>")
     write_file.write("".join(random_option))
+    qusserialNumber+=1
   if "#" in q:
     if headingCounter==0:
-      write_file.write(f"<div id=\"om{headingCounter}\"> ")
+      write_file.write(f"<div id=\"om{headingCounter}\" style=\"display:block; \"> ")
       headingCounter+=1
     elif headingCounter>0:
+      qusNumber=0
       write_file.write(f"</div><div id=\"om{str(headingCounter)}\"> ")
       headingCounter+=1
-  else:
-  
+  elif '---' not in q:
     write_file.write(f"<p>{q}</p>")
       
 strScript=" </div> <script>                 var elem = document.querySelectorAll('wrong');                      function getvalue(){ const divs = document.getElementsByTagName('div'); for(div of divs){ div.style.display=\"none\"; }                    document.getElementById(document.getElementById('sample').value).style.display='block';}              </script>   "   
