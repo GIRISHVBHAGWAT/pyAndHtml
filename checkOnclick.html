@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+    #but{
+      position: fixed;
+      right: 100px;
+      top: 200px;
+      padding: 30px;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+<button id='but' onclick='changeColor(this)'>hari om</button>
+
+<p class="wrong" onclick="yes(this)">hari om</p>
+<p class="wrong" onclick="yes(this)">hari om</p>
+<p class="right" onclick="no(this)">Om hari</p>
+<p class="right" onclick="no(this)">Om hari</p>
+<p class="right" onclick="no(this)">Om hari</p>
+<p class="right" onclick="no(this)">Om hari</p>
+<p class="wrong" onclick="yes(this)">hari om</p>
+<p class="wrong" onclick="yes(this)">hari om</p>
+<p class="wrong" onclick="yes(this)">hari om</p>
+<script>
+var i =0;
+  function changeColor(element){
+    if (i==0){
+      element.style.color = "red";
+      element.style.backgroundColor = 'yellow';
+      i=1;
+    }
+    else{
+      element.style.color = "white";
+      element.style.backgroundColor = 'blue';
+      i=0;
+    }
+    
+    
+  }
+  
+  function yes(element){
+    element.style.backgroundColor='red';
+    var listRight=document.getElementsByClassName('right');
+    //for (right in listRight){
+      //right.style.backgroundColor='white'
+    //}
+  }
+  function no(element) {
+    element.style.backgroundColor = 'green';
+    var listRight = document.getElementsByClassName('wrong');
+    //for (wrong in listRight) {
+      //wrong.style.backgroundColor = 'white'
+   // }
+  }
+</script>
+</body>
+
+</html>
