@@ -18,7 +18,7 @@ write_file.write(" ")
 write_file.close()
 
 write_file=io.open(save,"a",encoding="UTF8")
-write_file.write("<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>quiz1</title>  <style>  .hari { position: fixed; right: 20px; top: 0px }    #sample { font-size: 20px; background-color: yellow; color:blue; padding: 3px; }      div { display: none; overflow-y: auto; height: 800px; }        .wrong { border-style: solid; padding:5px; font-size: 18px; }             .right{ border-style: solid; padding: 5px; font-size: 18px; } h1{ margin-top: 50px; color:blue; font-size: 20px; }</style></head><body>")
+write_file.write("<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>quiz1</title>  <style>  .hari { position: fixed; right: 20px; top: 0px }    #sample { font-size: 20px; background-color: yellow; color:blue; padding: 3px; }      div { display: none; overflow-y: auto; height: 800px; }        .wrong { border-style: solid; padding:5px; font-size: 18px; }             .right{ border-style: solid; padding: 5px; font-size: 18px; } h1{ margin-top: 50px; color:blue; font-size: 20px; }p{ background: lightcyan; font-size:18px; border: solid; padding: 10px; border-color:red; text-align: center; margin: 5px;} body{ background:lightyellow;}</style></head><body>")
 
 allHeadings=[]
 headingvalue=0
@@ -52,6 +52,7 @@ qusserialNumber=4
 qusNumber=0;
 
 for q in qas:
+  
   if '---' in q:
     
     questions.append(q.split("---")[0])
@@ -88,6 +89,9 @@ for q in qas:
       qusNumber=0
       write_file.write(f"</div><div id=\"om{str(headingCounter)}\"> ")
       headingCounter+=1
+      
+  elif q == '\n':
+    qas.remove(q)
   elif '---' not in q:
     write_file.write(f"<p>{q}</p>")
       
