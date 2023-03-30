@@ -2,7 +2,7 @@
 print("HARI OM")
 
 
-data= "adhikari.txt"
+data= "vedantasara.txt"
 save="omgayatri.html"
 
 
@@ -38,14 +38,14 @@ for heading in allHeadings:
 write_file.write("</select></p>")
   
 
-questions=[]
-answers=[]
+questions=["परमात्मन् ","न मां कर्माणि","न मे कर्मफले ","यदा यदा हि धर्मस्य"]
+answers=[" अण्डमव्यक्तसम्भवम् "," गहना कर्मणो गतिः ","विद्ध्यकर्तारमव्ययम् ","बहवो ज्ञानतपसाः पूताः मद्भावमागताः "]
 
 cou=0
 fn=0
 quiz_code=[]
 headingCounter=0
-qusserialNumber=0
+qusserialNumber=4
 
   
    
@@ -69,13 +69,13 @@ for q in qas:
      
      
     opt1 = "<h2 class='wrong' onclick=\"this.style.backgroundColor='red' \">"+random.choice(answers)[:-1]+"</h2>"
-    opt2 ="<h2 class='wrong'onclick=\"this.style.backgroundColor='red' \">"+ random.choice(answers)[:-1]+"</h2>"
-    opt3 ="<h2 class='wrong' onclick=\"this.style.backgroundColor='red' \">"+ random.choice(answers)[:-1]+"</h2>"
-    one_str_answer =[ ans,opt1,opt2,opt3]
-    two_str_answer = [opt3,ans,opt1,opt2]
-    three_str_answer = [opt2,opt3,ans,opt1]
-    four_str_answer = [opt1,opt2,opt3,ans]   
-    answeres_list = [one_str_answer, two_str_answer, three_str_answer, four_str_answer] 
+    #opt2 ="<h2 class='wrong'onclick=\"this.style.backgroundColor='red' \">"+ random.choice(answers)[:-1]+"</h2>"
+    #opt3 ="<h2 class='wrong' onclick=\"this.style.backgroundColor='red' \">"+ random.choice(answers)[:-1]+"</h2>"
+    one_str_answer =[ opt1,ans ]
+    two_str_answer = [ans,opt1]
+    #three_str_answer = [opt2,opt3,ans,opt1]
+    #four_str_answer = [opt1,opt2,opt3,ans]   
+    answeres_list = [one_str_answer, two_str_answer] 
     random_option = random.choice(answeres_list)
     write_file.write("<h1>"+str(qusNumber)+". "+questions[qusserialNumber]+"</h1>")
     write_file.write("".join(random_option))
