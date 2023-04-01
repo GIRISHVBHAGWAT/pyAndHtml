@@ -2,7 +2,7 @@
 print("HARI OM")
 
 
-dataa= "example" # don't write extension like . txt 
+dataa= "tarkasangraha" # don't write extension like . txt 
 
 save=f"{dataa}.html"
 
