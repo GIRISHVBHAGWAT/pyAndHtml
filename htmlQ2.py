@@ -2,14 +2,15 @@
 print("HARI OM")
 
 
-data= "vedantasara.txt"
-save="omgayatri.html"
+dataa= "tarkasangraha" # don't write extension like . txt 
+
+save=f"{dataa}.html"
 
 
 import io
 import random
 
-open_file=io.open(data,"r",encoding="UTF8")
+open_file=io.open(f"{dataa}.txt","r",encoding="UTF8")
 qas=open_file.readlines()
 
 
