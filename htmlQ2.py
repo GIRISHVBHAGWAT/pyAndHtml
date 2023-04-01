@@ -20,15 +20,17 @@ write_file.write(" ")
 write_file.close()
 
 write_file=io.open(save,"a",encoding="UTF8")
-write_file.write("<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>quiz1</title>  <style>  .hari { position: fixed; right: 20px; top: 0px }    #sample { font-size: 20px; background-color: yellow; color:blue; padding: 3px; }      div { display: none; overflow: auto; height: 800px; }        .wrong { overflow: auto; border-style: solid; padding:5px; font-size: 18px; }             .right{ overflow: auto; border-style: solid; padding: 5px; font-size: 18px; } h1{ overflow: auto; margin-top: 100px; color:blue; font-size: 20px; }p{ margin-top: 100px; background: lightcyan; font-size:18px; border: solid; padding: 10px; border-color:red; text-align: center; margin: 5px;} body{ background:lightyellow;}</style></head><body>")
+write_file.write("<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>quiz1</title>  <style>  .hari { position: fixed; right: 20px; top: 0px }    #sample { font-size: 20px; background-color: yellow; color:blue; padding: 3px; }      div { display: none; overflow: auto; height: 800px; }        .wrong { overflow: auto; border-style: solid; padding:5px; font-size: 18px; }             .right{ overflow: auto; border-style: solid; padding: 5px; font-size: 18px; } h1{ overflow: auto; margin-top: 100px; color:blue; font-size: 20px; }p{ padding-top:100px; margin-top: 100px; background: lightcyan; font-size:18px; border: solid; padding: 10px; border-color:red; text-align: center; margin: 5px;} body{ background:lightyellow;}</style></head><body>")
 
 allHeadings=[]
 headingvalue=0
+headingCount=0
 
 for heading in qas:
   if '#' in heading:
     replacedHeading=heading.replace("#","")
-    allHeadings.append(replacedHeading)
+    allHeadings.append(f"{str(headingCount)}.{replacedHeading[:5]}")
+    headingCount+=1
     
 write_file.write(" <p class=\"hari\">  <select id=\"sample\" onchange=\"getvalue()\"> ")
 
@@ -107,15 +109,15 @@ for q in data:
       if firstparagraph==0:
         if "#" not in data[indexOfq]:
           if quizseperetor not in data[indexOfq]:
-            write_file.write(f"<p>{q}")
+            write_file.write(f"<p style=\"margin-top:80px; \">{q}")
             firstparagraph+=1
             
         if "#" in data[indexOfq]:
-          write_file.write(f"<p>{q}</p>")
+          write_file.write(f"<p style=\"margin-top:80px; \">{q}</p>")
           firstparagraph+=1
           
         if quizseperetor in data[indexOfq]:
-          write_file.write(f"<p>{q}</p>")
+          write_file.write(f"<p style=\"margin-top:80px; \">{q}</p>")
           firstparagraph+=0
           
           
@@ -134,7 +136,7 @@ for q in data:
           firstparagraph=0
           
     elif indexOfq==len(data):
-      write_file.write(f"<p>{q}</p>")
+      write_file.write(f"<p style=\"margin-top:80px; \">{q}</p>")
       
 strScript=" </div> <script>                 var elem = document.querySelectorAll('wrong');                      function getvalue(){ const divs = document.getElementsByTagName('div'); for(div of divs){ div.style.display=\"none\"; }                    document.getElementById(document.getElementById('sample').value).style.display='block';}              </script>   "   
 write_file.write(strScript)
