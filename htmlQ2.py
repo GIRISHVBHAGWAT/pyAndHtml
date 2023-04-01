@@ -2,7 +2,7 @@
 print("HARI OM")
 
 
-dataa= "tarkasangraha" # don't write extension like . txt 
+dataa= "example" # don't write extension like . txt 
 
 save=f"{dataa}.html"
 
@@ -19,7 +19,7 @@ write_file.write(" ")
 write_file.close()
 
 write_file=io.open(save,"a",encoding="UTF8")
-write_file.write("<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>quiz1</title>  <style>  .hari { position: fixed; right: 20px; top: 0px }    #sample { font-size: 20px; background-color: yellow; color:blue; padding: 3px; }      div { display: none; overflow: auto; height: 800px; }        .wrong { overflow: auto; border-style: solid; padding:5px; font-size: 18px; }             .right{ overflow: auto; border-style: solid; padding: 5px; font-size: 18px; } h1{ overflow: auto; margin-top: 100px; color:blue; font-size: 20px; }p{ background: lightcyan; font-size:18px; border: solid; padding: 10px; border-color:red; text-align: center; margin: 5px;} body{ background:lightyellow;}</style></head><body>")
+write_file.write("<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>quiz1</title>  <style>  .hari { position: fixed; right: 20px; top: 0px }    #sample { font-size: 20px; background-color: yellow; color:blue; padding: 3px; }      div { display: none; overflow: auto; height: 800px; }        .wrong { overflow: auto; border-style: solid; padding:5px; font-size: 18px; }             .right{ overflow: auto; border-style: solid; padding: 5px; font-size: 18px; } h1{ overflow: auto; margin-top: 100px; color:blue; font-size: 20px; }p{ margin-top: 100px; background: lightcyan; font-size:18px; border: solid; padding: 10px; border-color:red; text-align: center; margin: 5px;} body{ background:lightyellow;}</style></head><body>")
 
 allHeadings=[]
 headingvalue=0
@@ -48,6 +48,8 @@ quiz_code=[]
 headingCounter=0
 qusserialNumber=4
 
+firstparagraph=0
+
 data=[]
 
 for line in qas:
@@ -59,7 +61,7 @@ for line in qas:
 qusNumber=0;
 
 for q in data:
-    
+  indexOfq = data.index(q)+1  
   
   if '---' in q:
     
@@ -90,6 +92,7 @@ for q in data:
     write_file.write("".join(random_option))
     qusserialNumber+=1
   if "#" in q:
+    firstparagraph=0
     if headingCounter==0:
       write_file.write(f"<div id=\"om{headingCounter}\" style=\"display:block; \"> ")
       headingCounter+=1
@@ -99,7 +102,38 @@ for q in data:
       headingCounter+=1
       
   elif '---' not in q:
-    write_file.write(f"<p>{q}</p>")
+    if indexOfq<len(data):
+      if firstparagraph==0:
+        if "#" not in data[indexOfq]:
+          if "---" not in data[indexOfq]:
+            write_file.write(f"<p>{q}")
+            firstparagraph+=1
+            
+        if "#" in data[indexOfq]:
+          write_file.write(f"<p>{q}</p>")
+          firstparagraph+=1
+          
+        if "---" in data[indexOfq]:
+          write_file.write(f"<p>{q}</p>")
+          firstparagraph+=0
+          
+          
+      elif firstparagraph>0:
+        if "#" not in data[indexOfq]:
+          if "---" not in data[indexOfq]:
+            write_file.write(f"{q}")
+          
+          
+        if "#" in data[indexOfq]:
+          write_file.write(f"{q}</p>")
+          firstparagraph=0
+        
+        if "---" in data[indexOfq]:
+          write_file.write(f"{q}</p>")
+          firstparagraph=0
+          
+    elif indexOfq==len(data):
+      write_file.write(f"<p>{q}</p>")
       
 strScript=" </div> <script>                 var elem = document.querySelectorAll('wrong');                      function getvalue(){ const divs = document.getElementsByTagName('div'); for(div of divs){ div.style.display=\"none\"; }                    document.getElementById(document.getElementById('sample').value).style.display='block';}              </script>   "   
 write_file.write(strScript)
