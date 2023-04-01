@@ -2,8 +2,8 @@
 print("HARI OM")
 
 
-dataa= "vairagya" # don't write extension like . txt 
-quizseperetor="="
+dataa= "tarkasangraha" # don't write extension like . txt 
+quizseperetor="---"
 
 save=f"{dataa}.html"
 
@@ -29,7 +29,7 @@ headingCount=0
 for heading in qas:
   if '#' in heading:
     replacedHeading=heading.replace("#","")
-    allHeadings.append(f"{str(headingCount)}.{replacedHeading[:5]}")
+    allHeadings.append(f"{str(headingCount)}.{replacedHeading[:10]}")
     headingCount+=1
     
 write_file.write(" <p class=\"hari\">  <select id=\"sample\" onchange=\"getvalue()\"> ")
@@ -104,7 +104,7 @@ for q in data:
       write_file.write(f"</div><div id=\"om{str(headingCounter)}\"> ")
       headingCounter+=1
       
-  elif quizseperetor not in q:
+  if quizseperetor not in q:
     if indexOfq<len(data):
       if firstparagraph==0:
         if "#" not in data[indexOfq]:
