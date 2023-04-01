@@ -2,7 +2,8 @@
 print("HARI OM")
 
 
-dataa= "tarkasangraha" # don't write extension like . txt 
+dataa= "vairagya" # don't write extension like . txt 
+quizseperetor="="
 
 save=f"{dataa}.html"
 
@@ -63,10 +64,10 @@ qusNumber=0;
 for q in data:
   indexOfq = data.index(q)+1  
   
-  if '---' in q:
+  if quizseperetor in q:
     
-    questions.append(q.split("---")[0])
-    answers.append(q.split("---")[1])
+    questions.append(q.split(quizseperetor)[0])
+    answers.append(q.split(quizseperetor)[1])
     
     
   
@@ -101,11 +102,11 @@ for q in data:
       write_file.write(f"</div><div id=\"om{str(headingCounter)}\"> ")
       headingCounter+=1
       
-  elif '---' not in q:
+  elif quizseperetor not in q:
     if indexOfq<len(data):
       if firstparagraph==0:
         if "#" not in data[indexOfq]:
-          if "---" not in data[indexOfq]:
+          if quizseperetor not in data[indexOfq]:
             write_file.write(f"<p>{q}")
             firstparagraph+=1
             
@@ -113,14 +114,14 @@ for q in data:
           write_file.write(f"<p>{q}</p>")
           firstparagraph+=1
           
-        if "---" in data[indexOfq]:
+        if quizseperetor in data[indexOfq]:
           write_file.write(f"<p>{q}</p>")
           firstparagraph+=0
           
           
       elif firstparagraph>0:
         if "#" not in data[indexOfq]:
-          if "---" not in data[indexOfq]:
+          if quizseperetor not in data[indexOfq]:
             write_file.write(f"{q}")
           
           
@@ -128,7 +129,7 @@ for q in data:
           write_file.write(f"{q}</p>")
           firstparagraph=0
         
-        if "---" in data[indexOfq]:
+        if quizseperetor in data[indexOfq]:
           write_file.write(f"{q}</p>")
           firstparagraph=0
           
