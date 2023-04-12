@@ -1,9 +1,9 @@
-
+  
 print("HARI OM")
 
 
 dataa= "tarkasangraha" # don't write extension like . txt 
-quizseperetor="---"
+quizseperetor="="
 
 save=f"{dataa}.html"
 
